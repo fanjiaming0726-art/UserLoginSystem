@@ -11,4 +11,6 @@ public interface UserMapper {
     int insert(User user);
 
     User findById(@Param("id") Long id);
+
+    User findByOpenid(@Param("openid") String openid);
 }

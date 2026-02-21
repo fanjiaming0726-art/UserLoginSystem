@@ -22,7 +22,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ApiResponse<Void> handleOther(Exception e) {
-        // 生产环境建议打印日志，这里先简单返回
-        return ApiResponse.fail(5000, "服务器错误");
+        // ✅ 关键：打印堆栈，否则你永远只能看到“服务器错误”
+        e.printStackTrace();
+        return ApiResponse.fail(5000, "服务器错误：" + e.getMessage());
     }
 }

@@ -25,4 +25,8 @@
         values (#{username}, #{passwordHash}, #{nickname})
     </insert>
 
+    <select id="findByOpenid" resultType="com.example.userloginsystem.entity.User">
+        select * from user where openid = #{openid}
+    </select>
+
 </mapper>

@@ -17,3 +17,6 @@ app:
   jwt:
     secret: "please_change_this_to_a_long_random_string_32_chars_min"
     expire-seconds: 604800   # 7?
+wx:
+  appid: wx42bce5b469a88087
+  secret: 50a3401a40ee8f62a86f0af6c28c7850

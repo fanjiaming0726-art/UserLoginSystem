@@ -19,6 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/ping",
                         "/auth/register",
                         "/auth/login",
+                        "/auth/wx-login",
                         "/error"
                 );
     }

@@ -9,6 +9,9 @@ public class User {
     private String username;
     private String passwordHash;
     private String nickname;
+    private String openid;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String avatarUrl;
+    private String wxNickname;
 }
