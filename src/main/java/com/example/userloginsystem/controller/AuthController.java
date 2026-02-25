@@ -26,6 +26,7 @@ public class AuthController {
         return ApiResponse.ok(null);
     }
 
+    // @Valid注解代表启动校验，但是具体的校验规则在后面的具体类中，例如@NotBlank。所以@Valid和@NotBlank是相互配合的
     @PostMapping("/login")
     public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest req) {
         String token = authService.login(req);

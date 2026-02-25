@@ -13,4 +13,9 @@ public interface UserMapper {
     User findById(@Param("id") Long id);
 
     User findByOpenid(@Param("openid") String openid);
+
+    // ✅ 新增：微信用户再次登录时更新头像/昵称
+    int updateWxProfileByOpenid(@Param("openid") String openid,
+                                @Param("avatarUrl") String avatarUrl,
+                                @Param("wxNickname") String wxNickname);
 }

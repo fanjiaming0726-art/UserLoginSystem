@@ -5,28 +5,50 @@
 
 <mapper namespace="com.example.userloginsystem.mapper.UserMapper">
 
-    <!-- select id就是找到方法名，resultType就是确定这个方法的返回值类型  -->
     <select id="findByUsername" resultType="com.example.userloginsystem.entity.User">
-        select id, username, password_hash, nickname, created_at, updated_at
+        select
+        id, username, password_hash, nickname, openid,
+        avatar_url, wx_nickname,
+        created_at, updated_at
         from user
         where username = #{username}
         limit 1
     </select>
 
     <select id="findById" resultType="com.example.userloginsystem.entity.User">
-        select id, username, password_hash, nickname, created_at, updated_at
+        select
+        id, username, password_hash, nickname, openid,
+        avatar_url, wx_nickname,
+        created_at, updated_at
         from user
         where id = #{id}
         limit 1
     </select>
 
+    <!-- 账号密码注册 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into user (username, password_hash, nickname)
-        values (#{username}, #{passwordHash}, #{nickname})
+        insert into user (username, password_hash, nickname, openid, avatar_url, wx_nickname)
+        values (#{username}, #{passwordHash}, #{nickname}, #{openid}, #{avatarUrl}, #{wxNickname})
     </insert>
 
     <select id="findByOpenid" resultType="com.example.userloginsystem.entity.User">
-        select * from user where openid = #{openid}
+        select
+        id, username, password_hash, nickname, openid,
+        avatar_url, wx_nickname,
+        created_at, updated_at
+        from user
+        where openid = #{openid}
+        limit 1
     </select>
+
+    <!-- ✅ 微信头像/昵称更新 -->
+    <update id="updateWxProfileByOpenid">
+        update user
+        set
+        avatar_url = #{avatarUrl},
+        wx_nickname = #{wxNickname}
+        where openid = #{openid}
+
+    </update>
 
 </mapper>

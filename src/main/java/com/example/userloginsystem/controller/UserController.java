@@ -19,6 +19,15 @@ public class UserController {
     public ApiResponse<MeResponse> me() {
         Long userId = UserContext.getUserId();
         User user = userService.getById(userId);
-        return ApiResponse.ok(new MeResponse(user.getId(), user.getUsername(), user.getNickname()));
+
+        return ApiResponse.ok(
+                new MeResponse(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getNickname(),
+                        user.getAvatarUrl(),
+                        user.getWxNickname()
+                )
+        );
     }
 }

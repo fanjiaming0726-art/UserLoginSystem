@@ -7,16 +7,27 @@ spring:
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: secret
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
-    # ????????????
     map-underscore-to-camel-case: true
+
 app:
   jwt:
-    secret: "please_change_this_to_a_long_random_string_32_chars_min"
-    expire-seconds: 604800   # 7?
+    secret: ${JWT_SECRET}
+    expire-seconds: ${JWT_Expire_Seconds}
+
 wx:
-  appid: wx42bce5b469a88087
-  secret: 50a3401a40ee8f62a86f0af6c28c7850
+  appid: ${WX_APPID}
+  secret: ${WX_APPID}
+
+tencent:
+  cos:
+    secret-id: ${COS_SECRET_ID}
+    secret-key: ${COS_SECRET_KEY}
+    region: "ap-chongqing"
+    bucket: "user-avator-1391331368"
+    url-prefix: "https://user-avator-1391331368.cos.ap-chongqing.myqcloud.com"

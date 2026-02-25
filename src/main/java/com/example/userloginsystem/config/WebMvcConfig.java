@@ -20,6 +20,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                         "/auth/register",
                         "/auth/login",
                         "/auth/wx-login",
+                        "/file/upload",
                         "/error"
                 );
     }

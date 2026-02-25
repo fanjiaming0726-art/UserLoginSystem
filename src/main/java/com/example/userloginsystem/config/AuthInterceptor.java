@@ -15,6 +15,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     private String jwtSecret;
 
     @Override
+
+
+    /***
+     * 验证token，获取token，通过jwtSecret计算出新的签名与token中的签名进行比较，一致则返回true，则代表请求通过
+     */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         // 允许浏览器预检请求通过（小程序一般不需要，但加了更稳）
@@ -34,6 +39,8 @@ public class AuthInterceptor implements HandlerInterceptor {
         String token = auth.startsWith("Bearer ") ? auth.substring(7) : auth;
 
         try {
+
+            // 用jwtSecret来对token进行签名检查，并且返回UserId
             Long userId = JwtUtil.parseUserId(jwtSecret, token);
             UserContext.setUserId(userId);
             return true;
@@ -46,6 +53,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
 
     @Override
+
+    // 立刻清除用户上下文信息
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         UserContext.clear();
     }
